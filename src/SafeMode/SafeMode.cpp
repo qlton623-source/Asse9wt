@@ -111,15 +111,6 @@ bool SafeMode::shouldDisableLevelProgress()
 
 ccColor3B SafeMode::getIndicatorColour()
 {
-    if (ForceSafeMode::get()->getRealEnabled())
-        return ccc3(255, 255, 0);
-
-    if (isLevelLoadCheated || isAttemptCheated)
-        return ccc3(255, 0, 0);
-
-    if (PlayLayer::get() && PlayLayer::get()->m_startPosObject)
-        return ccc3(0, 133, 55);
-
     return ccc3(0, 255, 0);
 }
 
