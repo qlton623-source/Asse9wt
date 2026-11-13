@@ -6,7 +6,7 @@ using namespace geode::prelude;
 
 namespace qolmod {
 
-    class InputNode : public TextInput {
+    class InputNode : public geode::TextInput {
     protected:
         bool initWithWidth(
             float width,
@@ -15,7 +15,7 @@ namespace qolmod {
         );
 
         bool initWithSize(
-            CCSize const& size,
+            cocos2d::CCSize const& size,
             std::string placeholder,
             ZStringView font,
             bool multiline
@@ -25,39 +25,22 @@ namespace qolmod {
         static InputNode* create(
             float width,
             std::string placeholder,
-            ZStringView font
+            ZStringView font = "bigFont.fnt"
         );
 
         static InputNode* create(
-            CCSize const& size,
+            cocos2d::CCSize const& size,
             std::string placeholder,
-            ZStringView font
+            ZStringView font = "bigFont.fnt"
         );
 
         static InputNode* createMultiline(
-            CCSize const& size,
+            cocos2d::CCSize const& size,
             std::string placeholder,
-            ZStringView font
+            ZStringView font = "bigFont.fnt"
         );
 
         void setLanguageFonts();
     };
 
-}
-
-class KeycodeNode : public CCNode {
-protected:
-    CCScale9Sprite* bg = nullptr;
-    CCLabelBMFont* label = nullptr;
-    int keycode = -1;
-
-public:
-    static KeycodeNode* create(int keycode);
-
-    void setKeycode(int keycode);
-    int getKeycode();
-
-    virtual void setContentSize(const CCSize& contentSize);
-
-    bool init(int keycode);
-};
+} 
