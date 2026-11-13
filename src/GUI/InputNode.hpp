@@ -1,25 +1,63 @@
 #pragma once
 
 #include <Geode/Geode.hpp>
-#include "../Utils/AdvancedLabel/AdvLabelBMFont.hpp"
-#include "InputNode.hpp"
-#include "EasyBG.hpp"
 
 using namespace geode::prelude;
 
-namespace qolmod
-{
-    class InputNode : public geode::TextInput
-    {
-        protected:
-            bool initWithWidth(float width, std::string placeholder, ZStringView font);
-            bool initWithSize(cocos2d::CCSize const& size, std::string placeholder, ZStringView font, bool multiline);
+namespace qolmod {
 
-        public:
-            static InputNode* create(float width, std::string placeholder, ZStringView font = "bigFont.fnt");
-            static InputNode* create(cocos2d::CCSize const& size, std::string placeholder, ZStringView font = "bigFont.fnt");
-            static InputNode* createMultiline(cocos2d::CCSize const& size, std::string placeholder, ZStringView font = "bigFont.fnt");
+    class InputNode : public TextInput {
+    protected:
+        bool initWithWidth(
+            float width,
+            std::string placeholder,
+            ZStringView font
+        );
 
-            void setLanguageFonts();
+        bool initWithSize(
+            CCSize const& size,
+            std::string placeholder,
+            ZStringView font,
+            bool multiline
+        );
+
+    public:
+        static InputNode* create(
+            float width,
+            std::string placeholder,
+            ZStringView font
+        );
+
+        static InputNode* create(
+            CCSize const& size,
+            std::string placeholder,
+            ZStringView font
+        );
+
+        static InputNode* createMultiline(
+            CCSize const& size,
+            std::string placeholder,
+            ZStringView font
+        );
+
+        void setLanguageFonts();
     };
+
+}
+
+class KeycodeNode : public CCNode {
+protected:
+    CCScale9Sprite* bg = nullptr;
+    CCLabelBMFont* label = nullptr;
+    int keycode = -1;
+
+public:
+    static KeycodeNode* create(int keycode);
+
+    void setKeycode(int keycode);
+    int getKeycode();
+
+    virtual void setContentSize(const CCSize& contentSize);
+
+    bool init(int keycode);
 };
