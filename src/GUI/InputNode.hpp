@@ -43,4 +43,4 @@ namespace qolmod {
         void setLanguageFonts();
     };
 
-} 
+}
